@@ -24,4 +24,23 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleShooting();
     }
+
+    // Movimenta o tanque baseado na entrada do jogador
+    void HandleMovement()
+    {
+        float move = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        float rotate = Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime;
+
+        transform.Translate(0, 0, move);
+        transform.Rotate(0, rotate, 0);
+    }
+
+    // Atira um projétil se o jogador pressionar espaço
+    void HandleShooting()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        }
+    }
 }
